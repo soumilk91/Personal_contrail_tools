@@ -1,0 +1,309 @@
+heat_template_version: 2015-04-30 
+description: Template for Remote Compute Feature
+
+resources:
+  floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a:
+    type: OS::ContrailV2::FloatingIpPool
+    properties:
+      name: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a
+      virtual_network: 26c2b374-8bc6-4ef2-abd0-2da9b6a114e6
+  control_1_only_pop2_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      name: control_1_only_pop2_port_0
+      fixed_ips:
+      - ip_address: 10.0.0.11
+      allowed_address_pairs:
+  control_1_only_pop2:
+    type: OS::Nova::Server
+    properties:
+      name: control_1_only_pop2
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  control_1_only_pop2_port_0}
+  control_1_only_pop2_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : control_1_only_pop2_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.0.0.11
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  openstack_node_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      name: openstack_node_port_0
+      fixed_ips:
+      - ip_address: 10.0.0.4
+      allowed_address_pairs:
+  openstack_node:
+    type: OS::Nova::Server
+    properties:
+      name: openstack_node
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  openstack_node_port_0}
+  openstack_node_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : openstack_node_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.0.0.4
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  contrail_all_in_one_default_pop_1_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      name: contrail_all_in_one_default_pop_1_port_0
+      fixed_ips:
+      - ip_address: 10.0.0.5
+      allowed_address_pairs:
+  contrail_all_in_one_default_pop_1:
+    type: OS::Nova::Server
+    properties:
+      name: contrail_all_in_one_default_pop_1
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  contrail_all_in_one_default_pop_1_port_0}
+  contrail_all_in_one_default_pop_1_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : contrail_all_in_one_default_pop_1_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.0.0.5
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  compute_2_default_pop_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      name: compute_2_default_pop_port_0
+      fixed_ips:
+      - ip_address: 10.0.0.8
+      allowed_address_pairs:
+  compute_2_default_pop:
+    type: OS::Nova::Server
+    properties:
+      name: compute_2_default_pop
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  compute_2_default_pop_port_0}
+  compute_2_default_pop_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : compute_2_default_pop_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.0.0.8
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  contrail_all_in_one_default_pop_2_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      name: contrail_all_in_one_default_pop_2_port_0
+      fixed_ips:
+      - ip_address: 10.0.0.6
+      allowed_address_pairs:
+  contrail_all_in_one_default_pop_2:
+    type: OS::Nova::Server
+    properties:
+      name: contrail_all_in_one_default_pop_2
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  contrail_all_in_one_default_pop_2_port_0}
+  contrail_all_in_one_default_pop_2_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : contrail_all_in_one_default_pop_2_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.0.0.6
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  compute_2_pop2_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_4_996dae56-e524-477f-8994-1eeddea6637a
+      name: compute_2_pop2_port_0
+      fixed_ips:
+      - ip_address: 10.30.0.6
+      allowed_address_pairs:
+  compute_2_pop2:
+    type: OS::Nova::Server
+    properties:
+      name: compute_2_pop2
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  compute_2_pop2_port_0}
+  compute_2_pop2_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : compute_2_pop2_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.30.0.6
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  compute_1_pop2_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_4_996dae56-e524-477f-8994-1eeddea6637a
+      name: compute_1_pop2_port_0
+      fixed_ips:
+      - ip_address: 10.30.0.5
+      allowed_address_pairs:
+  compute_1_pop2:
+    type: OS::Nova::Server
+    properties:
+      name: compute_1_pop2
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  compute_1_pop2_port_0}
+  compute_1_pop2_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : compute_1_pop2_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.30.0.5
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  control_1_only_pop1_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      name: control_1_only_pop1_port_0
+      fixed_ips:
+      - ip_address: 10.0.0.9
+      allowed_address_pairs:
+  control_1_only_pop1:
+    type: OS::Nova::Server
+    properties:
+      name: control_1_only_pop1
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  control_1_only_pop1_port_0}
+  control_1_only_pop1_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : control_1_only_pop1_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.0.0.9
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  control_2_only_pop1_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      name: control_2_only_pop1_port_0
+      fixed_ips:
+      - ip_address: 10.0.0.10
+      allowed_address_pairs:
+  control_2_only_pop1:
+    type: OS::Nova::Server
+    properties:
+      name: control_2_only_pop1
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  control_2_only_pop1_port_0}
+  control_2_only_pop1_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : control_2_only_pop1_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.0.0.10
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  compute_1_pop1_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_3_996dae56-e524-477f-8994-1eeddea6637a
+      name: compute_1_pop1_port_0
+      fixed_ips:
+      - ip_address: 10.20.0.5
+      allowed_address_pairs:
+  compute_1_pop1:
+    type: OS::Nova::Server
+    properties:
+      name: compute_1_pop1
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  compute_1_pop1_port_0}
+  compute_1_pop1_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : compute_1_pop1_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.20.0.5
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  compute_1_default_pop_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      name: compute_1_default_pop_port_0
+      fixed_ips:
+      - ip_address: 10.0.0.7
+      allowed_address_pairs:
+  compute_1_default_pop:
+    type: OS::Nova::Server
+    properties:
+      name: compute_1_default_pop
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  compute_1_default_pop_port_0}
+  compute_1_default_pop_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : compute_1_default_pop_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.0.0.7
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  control_2_only_pop2_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      name: control_2_only_pop2_port_0
+      fixed_ips:
+      - ip_address: 10.0.0.12
+      allowed_address_pairs:
+  control_2_only_pop2:
+    type: OS::Nova::Server
+    properties:
+      name: control_2_only_pop2
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  control_2_only_pop2_port_0}
+  control_2_only_pop2_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : control_2_only_pop2_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.0.0.12
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+  compute_2_pop1_port_0:
+    type: OS::Neutron::Port
+    properties:
+      network: final_test_network_3_996dae56-e524-477f-8994-1eeddea6637a
+      name: compute_2_pop1_port_0
+      fixed_ips:
+      - ip_address: 10.20.0.6
+      allowed_address_pairs:
+  compute_2_pop1:
+    type: OS::Nova::Server
+    properties:
+      name: compute_2_pop1
+      flavor: m1.xxlarge
+      image: centos-7.4
+      networks:
+        - port: { get_resource:  compute_2_pop1_port_0}
+  compute_2_pop1_floating_ip:
+    type: OS::ContrailV2::FloatingIp
+    properties:
+      virtual_machine_interface_refs: [{ get_resource : compute_2_pop1_port_0}]
+      floating_ip_pool: { get_resource: floatingIpPool_final_script_test_996dae56-e524-477f-8994-1eeddea6637a }
+      floating_ip_fixed_ip_address: 10.20.0.6
+      project_refs: [ 996dae56-e524-477f-8994-1eeddea6637a ]
+

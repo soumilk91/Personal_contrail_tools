@@ -1,0 +1,225 @@
+{
+	"inp_params": {
+		"description":{
+			"msg" : "Template for Remote Compute Feature"
+		},
+		"params":{
+			"no_of_servers" : 6,
+			"no_of_networks" : 2,
+			"network_stack_name" : "test_network_final",
+			"server_stack_name" : "test_server_final",
+			"project_uuid" : "project_uuid_val"	
+		},
+		"networks":{
+			"final_test_network_1":{
+				"name": "final_test_network_1",
+				"ip_block_with_mask" : "10.0.0.0/24",
+				"default_gateway" : "10.0.0.1",
+				"role" : "management"
+			},
+			"final_test_network_2":{
+                                "name": "final_test_network_2",
+                                "ip_block_with_mask" : "10.10.0.0/24",
+                                "default_gateway" : "10.10.0.1",
+                                "role" : "management"
+                        },
+			"final_test_network_3":{
+                                "name": "final_test_network_3",
+                                "ip_block_with_mask" : "10.20.0.0/24",
+                                "default_gateway" : "10.20.0.1",
+                                "role" : "management"
+                        },
+			"final_test_network_4":{
+                                "name": "final_test_network_4",
+                                "ip_block_with_mask" : "10.30.0.0/24",
+                                "default_gateway" : "10.30.0.1",
+                                "role" : "management"
+                        },
+			"final_test_network_5":{
+                                "name": "final_test_network_5",
+                                "ip_block_with_mask" : "10.40.0.0/24",
+                                "default_gateway" : "10.40.0.1",
+                                "role" : "management"
+                        },
+			"final_test_network_6":{
+                                "name": "final_test_network_6",
+                                "ip_block_with_mask" : "10.50.0.0/24",
+                                "default_gateway" : "10.50.0.1",
+                                "role" : "management"
+                        }
+		},
+		"floating_ip_network":{
+                        "param":{
+                                "floating_ip_network_uuid" : "fip_uuid",
+                                "name" : "floatingIpPool_final_script_test"
+                        }
+                },
+		"remote_compute_params": {
+			
+		},
+		"cluster":{
+			"cluster_1":{
+				"servers":{
+					"server1":{
+						"name":"server_all_in_one_except_control" , 
+						"ip_address" : { "final_test_network_1":"10.0.0.4"},
+						"flavor" : "m1.xxlarge",
+						"image" : "image_val",
+						"floating_ip" : "true",
+						"server_manager" : "flase",
+						"roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+					},
+					"server2":{
+                                                "name":"control_1_default_pop" ,
+                                                "ip_address" : { "final_test_network_1":"10.0.0.5"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "flase",
+                                                "roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                                        },
+					"server3":{
+                                                "name":"control_2_default_pop" ,
+                                                "ip_address" : { "final_test_network_1":"10.0.0.6"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "flase",
+                                                "roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                                        },
+					"server4":{	
+                                		"name":"compute_1_default_pop" ,
+                                		"ip_address" : { "final_test_network_1":"10.0.0.7"},
+                                		"flavor" : "m1.xxlarge",
+                                		"image" : "image_val",
+                                		"floating_ip" : "true",
+                                		"server_manager" : "false",
+                                		"roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                        		},
+					"server5":{
+                                                "name":"compute_2_default_pop" ,
+                                                "ip_address" : { "final_test_network_1":"10.0.0.8"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "false",
+                                                "roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                                        },
+					"server6":{
+                                                "name":"control_1_only_pop1" ,
+                                                "ip_address" : { "final_test_network_1":"10.0.0.9"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "false",
+                                                "roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                                        },
+					"server7":{
+                                                "name":"control_2_only_pop1" ,
+                                                "ip_address" : { "final_test_network_1":"10.0.0.10"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "false",
+                                                "roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                                        },
+					"server8":{
+                                                "name":"control_1_only_pop2" ,
+                                                "ip_address" : { "final_test_network_1":"10.0.0.11"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "false",
+                                                "roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                                        },
+					"server9":{
+                                                "name":"control_2_only_pop2" ,
+                                                "ip_address" : { "final_test_network_1":"10.0.0.12"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "false",
+                                                "roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                                        },
+					"server10":{
+                                		"name":"compute_1_pop1" ,
+                                		"ip_address" : { "final_test_network_3":"10.20.0.5"},
+                                		"flavor" : "m1.xxlarge",
+                                		"image" : "image_val",
+                                		"floating_ip" : "true",
+                                		"server_manager" : "false",
+                                		"roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                        		},
+					"server11":{
+                                                "name":"compute_2_pop1" ,
+                                                "ip_address" : { "final_test_network_3":"10.20.0.6"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "false",
+                                                "roles" : ["config", "openstack", "webui", "control", "collector", "database"]
+                                        },
+					"server12":{
+                                                "name":"compute_1_pop2" ,
+                                                "ip_address" : { "final_test_network_4":"10.30.0.5"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "false",
+                                                "roles" : ["compute"]
+                        		},
+					"server13":{
+                                                "name":"compute_2_pop2" ,
+                                                "ip_address" : { "final_test_network_4":"10.30.0.6"},
+                                                "flavor" : "m1.xxlarge",
+                                                "image" : "image_val",
+                                                "floating_ip" : "true",
+                                                "server_manager" : "false",
+                                                "roles" : ["compute"]
+                                        }
+				},
+				"cluster_json_params": {
+					"server_password" : "c0ntrail123",
+					"management_interface": "eth0",
+					"control_data_iterface": "eth1",
+                        		"cluster_id": "test-cluster",
+                        		"parameters": {
+                                		"domain": "englab.juniper.net",
+						"enable_lbaas": "True",
+                                		"provision":{
+                                        		"contrail": {
+                                                		"minimum_disk_database": 32,
+                                                		"kernel_upgrade": "true"
+                                        		},
+                                        		"openstack":{
+								"keystone_admin_password": "c0ntrail123"
+                                        		}
+                                		}
+                        		}
+                		},
+				"testbed_py_params": {
+					"env_password": "c0ntrail123",
+					"env_ostypes" : "ubuntu",
+					"enable_rbac": "true",
+					"openstack_admin_password" : "c0ntrail123",
+					"minimum_diskGB" : 32,
+					"env.test_repo_dir": "/home/stack/centos_sanity/contrail-test",
+					"env.mail_from": "contrail-build@juniper.net",
+					"env.mail_to" : "dl-contrail-sw@juniper.net",
+					"env.mail_server": "10.84.24.64",
+					"env.mail_port" : "4000",
+					"multi_tenancy": "True",
+					"env.interface_rename": "False",
+					"env.encap_priority" : "'VXLAN','MPLSoUDP','MPLSoGRE'",
+					"env.enable_lbaas" : "True",
+					"enable_ceilometer" : "True",
+					"env.image_web_server": "10.84.5.120",
+					"env.ntp_server" : "10.84.5.100",
+					"env.testbed_location": "US",
+					"ceilometer_polling_interval": 60,
+					"do_parallel": "True"
+				}	
+			}
+		}
+	}
+}

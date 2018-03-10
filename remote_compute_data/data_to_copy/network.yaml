@@ -1,0 +1,96 @@
+heat_template_version: 2015-04-30
+
+description: Template for Remote Compute Feature
+
+resources:
+  final_test_network_3_996dae56-e524-477f-8994-1eeddea6637a:
+    type: OS::Neutron::Net
+    properties:
+      name: final_test_network_3_996dae56-e524-477f-8994-1eeddea6637a
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+
+  final_test_network_3_996dae56-e524-477f-8994-1eeddea6637a_subnet_1:
+    type: OS::Neutron::Subnet
+    properties:
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+      network_id: { get_resource: final_test_network_3_996dae56-e524-477f-8994-1eeddea6637a }
+      cidr: 10.20.0.0/24
+      ip_version: 4
+      name: final_test_network_3_996dae56-e524-477f-8994-1eeddea6637a_subnet_1
+
+  final_test_network_4_996dae56-e524-477f-8994-1eeddea6637a:
+    type: OS::Neutron::Net
+    properties:
+      name: final_test_network_4_996dae56-e524-477f-8994-1eeddea6637a
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+
+  final_test_network_4_996dae56-e524-477f-8994-1eeddea6637a_subnet_1:
+    type: OS::Neutron::Subnet
+    properties:
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+      network_id: { get_resource: final_test_network_4_996dae56-e524-477f-8994-1eeddea6637a }
+      cidr: 10.30.0.0/24
+      ip_version: 4
+      name: final_test_network_4_996dae56-e524-477f-8994-1eeddea6637a_subnet_1
+
+  final_test_network_2_996dae56-e524-477f-8994-1eeddea6637a:
+    type: OS::Neutron::Net
+    properties:
+      name: final_test_network_2_996dae56-e524-477f-8994-1eeddea6637a
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+
+  final_test_network_2_996dae56-e524-477f-8994-1eeddea6637a_subnet_1:
+    type: OS::Neutron::Subnet
+    properties:
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+      network_id: { get_resource: final_test_network_2_996dae56-e524-477f-8994-1eeddea6637a }
+      cidr: 10.10.0.0/24
+      ip_version: 4
+      name: final_test_network_2_996dae56-e524-477f-8994-1eeddea6637a_subnet_1
+
+  final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a:
+    type: OS::Neutron::Net
+    properties:
+      name: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+
+  final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a_subnet_1:
+    type: OS::Neutron::Subnet
+    properties:
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+      network_id: { get_resource: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a }
+      cidr: 10.0.0.0/24
+      ip_version: 4
+      name: final_test_network_1_996dae56-e524-477f-8994-1eeddea6637a_subnet_1
+
+  final_test_network_6_996dae56-e524-477f-8994-1eeddea6637a:
+    type: OS::Neutron::Net
+    properties:
+      name: final_test_network_6_996dae56-e524-477f-8994-1eeddea6637a
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+
+  final_test_network_6_996dae56-e524-477f-8994-1eeddea6637a_subnet_1:
+    type: OS::Neutron::Subnet
+    properties:
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+      network_id: { get_resource: final_test_network_6_996dae56-e524-477f-8994-1eeddea6637a }
+      cidr: 10.50.0.0/24
+      ip_version: 4
+      name: final_test_network_6_996dae56-e524-477f-8994-1eeddea6637a_subnet_1
+
+  final_test_network_5_996dae56-e524-477f-8994-1eeddea6637a:
+    type: OS::Neutron::Net
+    properties:
+      name: final_test_network_5_996dae56-e524-477f-8994-1eeddea6637a
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+
+  final_test_network_5_996dae56-e524-477f-8994-1eeddea6637a_subnet_1:
+    type: OS::Neutron::Subnet
+    properties:
+      tenant_id: 996dae56-e524-477f-8994-1eeddea6637a
+      network_id: { get_resource: final_test_network_5_996dae56-e524-477f-8994-1eeddea6637a }
+      cidr: 10.40.0.0/24
+      ip_version: 4
+      name: final_test_network_5_996dae56-e524-477f-8994-1eeddea6637a_subnet_1
+
+
